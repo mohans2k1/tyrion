@@ -24,4 +24,13 @@ public class King implements Piece {
     public long getBitboard() {
         return bitboard;
     }
+
+    @Override
+    public King clone() {
+        try {
+            return (King) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
 }

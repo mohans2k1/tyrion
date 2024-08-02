@@ -25,4 +25,13 @@ public class Pawn implements Piece {
     public long getBitboard() {
         return bitboard;
     }
+
+    @Override
+    public Pawn clone() {
+        try {
+            return (Pawn) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
 }

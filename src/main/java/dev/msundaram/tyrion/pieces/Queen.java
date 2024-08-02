@@ -24,4 +24,13 @@ public class Queen implements Piece {
     public long getBitboard() {
         return bitboard;
     }
+
+    @Override
+    public Queen clone() {
+        try {
+            return (Queen) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
 }

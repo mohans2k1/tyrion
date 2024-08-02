@@ -24,4 +24,13 @@ public class Rook implements Piece {
     public long getBitboard() {
         return bitboard;
     }
+
+    @Override
+    public Rook clone() {
+        try {
+            return (Rook) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
 }

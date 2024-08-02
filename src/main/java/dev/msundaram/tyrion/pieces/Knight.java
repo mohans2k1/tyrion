@@ -24,4 +24,13 @@ public class Knight implements Piece {
     public long getBitboard() {
         return bitboard;
     }
+
+    @Override
+    public Knight clone() {
+        try {
+            return (Knight) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
 }

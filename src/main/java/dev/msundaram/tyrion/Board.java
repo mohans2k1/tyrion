@@ -4,7 +4,7 @@ import dev.msundaram.tyrion.pieces.*;
 
 import java.util.ArrayList;
 
-public class Board {
+public class Board implements Cloneable {
     private static final int WHITE_PAWNS = 0;
     private static final int WHITE_ROOKS = 1;
     private static final int WHITE_KNIGHTS = 2;
@@ -26,6 +26,11 @@ public class Board {
     private final boolean castle_black_kingside;
     private final boolean castle_black_queenside;
 
+    private final long allPieces;
+    private final long whitePieces;
+    private final long blackPieces;
+
+
     public Board() {
         pieces.add(new Pawn(Color.WHITE));
         pieces.add(new Rook(Color.WHITE));
@@ -39,6 +44,19 @@ public class Board {
         pieces.add(new Bishop(Color.BLACK));
         pieces.add(new Queen(Color.BLACK));
         pieces.add(new King(Color.BLACK));
+
+        long temp = 0L;
+        long temp2 = 0L;
+        long temp3 = 0L;
+        for (Piece piece : pieces) {
+            temp |= piece.getBitboard();
+            temp2 |= getTurn() == Color.WHITE ? piece.getBitboard() : 0;
+            temp3 |= getTurn() == Color.BLACK ? piece.getBitboard() : 0;
+
+        }
+        allPieces = temp;
+        whitePieces = temp2;
+        blackPieces = temp3;
 
         turn = Color.WHITE;
         moveCount = 0;
@@ -82,4 +100,38 @@ public class Board {
         }
     }
 
+    @Override
+    public Board clone() {
+        try {
+            Board clone = (Board) super.clone();
+            // TODO: copy mutable state here, so the clone can't change the internals of the original
+            clone.pieces.clear();
+            for (Piece piece : pieces) {
+                clone.pieces.add(piece.clone());
+            }
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
+
+    public Color getTurn() {
+        return turn;
+    }
+
+    public Piece getPiece(PieceType pieceType) {
+        return pieces.get(pieceType.ordinal());
+    }
+
+    public long getAllPieces() {
+        return allPieces;
+    }
+
+    public long getWhitePieces() {
+        return whitePieces;
+    }
+
+    public long getBlackPieces() {
+        return blackPieces;
+    }
 }

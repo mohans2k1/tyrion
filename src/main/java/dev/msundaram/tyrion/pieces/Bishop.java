@@ -23,4 +23,13 @@ public class Bishop implements Piece {
     public long getBitboard() {
         return bitboard;
     }
+
+    @Override
+    public Bishop clone() {
+        try {
+            return (Bishop) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
 }
