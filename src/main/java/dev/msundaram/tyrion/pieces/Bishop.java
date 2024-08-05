@@ -1,18 +1,24 @@
 package dev.msundaram.tyrion.pieces;
 
+import dev.msundaram.tyrion.Board;
 import dev.msundaram.tyrion.Color;
+import dev.msundaram.tyrion.processors.Move;
 
-public class Bishop implements Piece {
-    private final Color color;
-    private final long bitboard;
+import java.util.List;
+
+public class Bishop extends Slider implements Cloneable {
 
     public Bishop(Color color) {
-        this.color = color;
-        if (color == Color.WHITE) {
+        super(color);
+        if (color == Color.BLACK) {
             bitboard = 0b00100100_00000000_00000000_00000000_00000000_00000000_00000000_00000000L;
         } else {
             bitboard = 0b00000000_00000000_00000000_00000000_00000000_00000000_00000000_00100100L;
         }
+    }
+
+    public Bishop(Color color, long bitboard) {
+        super(color, bitboard);
     }
 
     @Override
@@ -31,5 +37,10 @@ public class Bishop implements Piece {
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();
         }
+    }
+
+    @Override
+    public List<Move> generateMoves(Board origin) {
+        return null;
     }
 }
