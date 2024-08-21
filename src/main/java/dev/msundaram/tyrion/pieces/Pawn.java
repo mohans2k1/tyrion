@@ -7,6 +7,7 @@ import dev.msundaram.tyrion.processors.Move;
 import dev.msundaram.tyrion.processors.MoveType;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static dev.msundaram.tyrion.Constants.*;
@@ -48,7 +49,7 @@ public class Pawn extends Piece implements Cloneable {
 
     @Override
     public List<Move> generateMoves(Board origin) {
-        if (bitboard == 0) return null;
+        if (bitboard == 0) return Collections.emptyList();
         long prePromotionRank = color == Color.WHITE ? RANK_7 : RANK_2;
         long doublePawnPushPosition = color == Color.WHITE ? RANK_3 : RANK_6;
         Direction up = color == Color.WHITE ? Direction.NORTH : Direction.SOUTH;

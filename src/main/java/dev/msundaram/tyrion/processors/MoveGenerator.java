@@ -21,8 +21,8 @@ public class MoveGenerator implements Processor {
         Piece pawn = board.getTurn() == Color.WHITE ? board.getPiece(WHITE_PAWNS) : board.getPiece(BLACK_PAWNS);
         Piece knight = board.getTurn() == Color.WHITE ? board.getPiece(WHITE_KNIGHTS) : board.getPiece(BLACK_KNIGHTS);
         Piece king = board.getTurn() == Color.WHITE ? board.getPiece(WHITE_KINGS) : board.getPiece(BLACK_KINGS);
-//        moves.addAll(pawn.generateMoves(board));
-//        moves.addAll(knight.generateMoves(board));
+        moves.addAll(pawn.generateMoves(board));
+        moves.addAll(knight.generateMoves(board));
         moves.addAll(king.generateMoves(board));
 
         for (Move move : moves) {

@@ -115,6 +115,7 @@ public class Board {
         this.castle_black_queenside = castle.contains("q");
         Knight.computeMoves();
         King.computeMoves();
+        RayGenerationUtils.computeRays();
     }
 
 
